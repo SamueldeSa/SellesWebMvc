@@ -30,7 +30,18 @@ namespace SalesWebMvc.Services
             _context.SaveChanges();
         }
 
+        //Retorna um vendedor que contém esse Id / ou nulo
+        public Seller FindById(int id)
+        {
+            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+        }
 
-
+        //remove do db context 
+        public void Remove(int id)
+        {
+            var obj = _context.Seller.Find(id);
+            _context.Seller.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 }
